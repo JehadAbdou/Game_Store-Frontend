@@ -4,6 +4,7 @@ import CartItem from "./CartItem";
 
 const CartContainer = () => {
   const { cart } = useGlobalContext();
+
   let totalPrice = 0;
   for (let game of cart) {
     totalPrice += game.price;

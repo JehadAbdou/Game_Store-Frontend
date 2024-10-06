@@ -1,4 +1,9 @@
-import { useContext, createContext, useReducer, useState } from "react";
+import {
+  useContext,
+  createContext,
+  useReducer,
+  useState,
+} from "react";
 import reducer from "./reducer";
 import Games from "./data";
 
@@ -10,11 +15,11 @@ const initialState = {
 export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [cart, setCart] = useState([]);
+
   const AddGame = (id) => {
     const game = Games.find((game) => game.id === id);
     if (game && !cart.find((item) => item.id === game.id)) {
       setCart([...cart, game]);
-      console.log(cart);
     } else {
       console.log("Game not found or already in the cart");
     }
