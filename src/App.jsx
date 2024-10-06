@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import Home from "./Home";
 import GameDetails from "./GameDetails";
 import NavBar from "./NavBar";
@@ -17,40 +22,26 @@ const App = () => {
 
   return (
     <Router>
-      {isAuthenticated ? (
-        <>
-          {/* Display Navbar and routes if authenticated */}
-          <NavBar />
-          <Routes>
+      {isAuthenticated && <NavBar />} {/* Render NavBar if authenticated */}
+      <Routes>
+        {isAuthenticated ? (
+          <>
+            <Route path="/home" element={<Home />} />
+            <Route path="/cart" element={<CartContainer />} />
+            <Route path="/game/:id" element={<GameDetails />} />
+            <Route path="*" element={<Navigate to="/home" />} />
+          </>
+        ) : (
+          <>
             <Route
-              path="/home"
-              element={<Home />}
-            />
-            <Route
-              path="/CartContainer"
-              element={<CartContainer />}
-            />
-            <Route
-              path="/game/:id"
-              element={<GameDetails />}
-            />
-          </Routes>
-        </>
-      ) : (
-        <>
-          {/* Show login page if not authenticated */}
-          <Routes>
-            <Route
-              path="LogIn/LogInPage"
+              path="/login"
               element={<LogInPage onLogin={handleLogin} />}
             />
-            <Route
-              path="LogIn/Register"
-              element={<Register />}
-            />
-          </Routes>
-        </>
-      )}
+            <Route path="/register" element={<Register />} />
+            <Route path="*" element={<Navigate to="/login" />} />
+          </>
+        )}
+      </Routes>
     </Router>
   );
 };

@@ -3,22 +3,16 @@ import { Link } from "react-router-dom";
 const Register = () => {
   return (
     <div>
-      Welcome to my game store
-      <div>
-        <input
-          type="text"
-          placeholder="username"
-        />
-        <input
-          type="text"
-          placeholder="password"
-        />
-        <input
-          type="submit"
-          value=" Login"
-        />
+      <div className="Register">
+        <h1>Create an account</h1>
+        <input type="text" placeholder="username" />
+        <input type="text" placeholder="password" />
+        <input type="text" placeholder="email" />
+        <input type="submit" value=" Register" className="regBtn" />
+        <Link to="/LogInPage" className="loginLink">
+          Already registered
+        </Link>
       </div>
-      <Link to="/LogInPage">Already registered</Link>
     </div>
   );
 };

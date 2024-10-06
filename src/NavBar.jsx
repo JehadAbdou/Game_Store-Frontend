@@ -8,7 +8,6 @@ import { useGlobalContext } from "./context";
 const NavBar = () => {
   const { cart } = useGlobalContext();
   const [isOpen, setIsOpen] = useState(false);
-  const cartBtn = () => {};
   const toggle = () => {
     setIsOpen(!isOpen);
   };
@@ -17,15 +16,11 @@ const NavBar = () => {
     <nav>
       <div className="nav-center">
         <div className="nav-header">
-          <a
-            href="./"
-            className="logo">
-            <img
-              className="logo"
-              src={logo}
-              alt="logo"
-            />
-          </a>
+          <Link to={"/home"}>
+            <a className="logo">
+              <img className="logo" src={logo} alt="logo" />
+            </a>
+          </Link>
           <div className="search-container">
             <input
               type="text"
@@ -35,9 +30,7 @@ const NavBar = () => {
             <FaSearch className="search-icon" />
           </div>
 
-          <button
-            className="toggle-btn"
-            onClick={toggle}>
+          <button className="toggle-btn" onClick={toggle}>
             ☰
           </button>
         </div>
@@ -72,7 +65,7 @@ const NavBar = () => {
           </ul>
         </div>
         <div className="cart-container">
-          <Link to={"/CartContainer"}>
+          <Link to={"/cart"}>
             <FaShoppingCart className="cart-icon" />
             <div className="amount-container">
               <span className="total-amount">{cart.length}</span>
